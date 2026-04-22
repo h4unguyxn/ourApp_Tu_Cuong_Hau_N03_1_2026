@@ -1,4 +1,10 @@
 # HCT Food - Ứng dụng đặt đồ ăn
+## 🧾 Giới thiệu
+
+HCT Food là ứng dụng đặt đồ ăn được xây dựng bằng Flutter trong khuôn khổ môn học Lập trình thiết bị di động.
+Project bao gồm các bài thực hành từ cơ bản đến nâng cao: tạo framework, quản lý dữ liệu và lập trình hướng đối tượng.
+
+---
 
 ## Thành viên
 - Nguyễn Xuân Hậu - 23010206
@@ -9,22 +15,6 @@
 - Flutter
 - Dart
 - GitHub
-# 📱 HCT Food 🍔
-
-## 🧾 Giới thiệu
-
-HCT Food là ứng dụng đặt đồ ăn được xây dựng bằng Flutter trong khuôn khổ môn học Lập trình thiết bị di động.
-Project bao gồm các bài thực hành từ cơ bản đến nâng cao: tạo framework, quản lý dữ liệu và lập trình hướng đối tượng.
-
----
-
-## 👥 Thành viên nhóm
-
-* Nguyễn Văn Cường - 2023xxxx
-* ...
-* ...
-
----
 
 # 🚀 BÀI THỰC HÀNH 01
 
