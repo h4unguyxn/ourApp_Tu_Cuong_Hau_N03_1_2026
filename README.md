@@ -74,10 +74,28 @@ var listFood = [
 
 ## 📌 Câu 1: Static
 
-* Static là biến/phương thức thuộc class
-* Gọi bằng: `ClassName.method()`
-* Ưu điểm: tiết kiệm bộ nhớ
-* Nhược điểm: dễ gây lỗi nếu dùng chung
+Static là gì?
+Trong lập trình (đặc biệt là Java, C++, C#), static là một từ khóa dùng để khai báo các thành phần (biến, phương thức, lớp lồng) thuộc về lớp (class) thay vì thuộc về đối tượng (object). Điều này có nghĩa là tất cả các đối tượng của lớp sẽ dùng chung một bản sao duy nhất của thành phần static. Ví dụ: một biến static sẽ không thay đổi theo từng object mà chỉ tồn tại một lần trong bộ nhớ.
+
+Cách sử dụng static:
+
+Biến static (static variable): Dùng để lưu dữ liệu chung cho tất cả các đối tượng.
+Ví dụ: đếm số lượng object đã tạo.
+Phương thức static (static method): Có thể gọi trực tiếp bằng tên lớp mà không cần tạo object.
+Ví dụ: Math.sqrt() trong Java.
+Khối static (static block): Dùng để khởi tạo dữ liệu tĩnh ngay khi lớp được load.
+Lớp static (trong Java): Thường dùng cho lớp lồng (nested class).
+Ưu điểm của static:
+
+Tiết kiệm bộ nhớ vì chỉ tồn tại một bản duy nhất.
+Dễ truy cập, không cần tạo object vẫn dùng được.
+Phù hợp cho các giá trị dùng chung như hằng số (static final).
+Nhược điểm của static:
+
+Khó kiểm soát khi nhiều nơi cùng thay đổi giá trị (dễ gây lỗi).
+Làm giảm tính hướng đối tượng (OOP), vì không gắn với object.
+Khó mở rộng và kiểm thử (test), đặc biệt trong các hệ thống lớn.
+Tóm lại, static rất hữu ích khi cần chia sẻ dữ liệu hoặc chức năng chung, nhưng cần sử dụng hợp lý để tránh ảnh hưởng đến thiết kế chương trình.
 
 ---
 
@@ -90,34 +108,59 @@ Tạo class tổng quát để xử lý nhiều kiểu dữ liệu
 ```dart
 class MyGeneric<T> {
   T obj;
+
   MyGeneric(this.obj);
 
   void printData() {
     print(obj);
   }
 }
+
+void main() {
+  var student = [
+    {'studentID': 's123456', 'fullname': 'Nguyen Thi B'},
+    {'studentID': 's345672', 'fullname': 'Nguyen Van D'},
+    {'studentID': 's923333', 'fullname': 'Tran Thi Van'},
+  ];
+
+  var myData = MyGeneric(student);
+
+  myData.printData();
+}
 ```
 
 ---
 
-## 📌 Câu 3: Class Food
+## 📌 Câu 3: Class
 
 ```dart
-class Food {
+import 'monan.dart';
+
+class DonHang {
   int id;
-  String name;
-  int price;
-  int quantity;
+  String tenKhachHang;
+  List<MonAn> danhSachMon;
 
-  Food({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.quantity,
-  });
+  DonHang(this.id, this.tenKhachHang, this.danhSachMon);
 
-  void display() {
-    print('$id - $name - $price - $quantity');
+  double tinhTongTien() {
+    double tong = 0;
+    for (var mon in danhSachMon) {
+      tong += mon.gia;
+    }
+    return tong;
+  }
+
+  void hienThiDonHang() {
+    print("ID: $id");
+    print("Khách hàng: $tenKhachHang");
+
+    print("Danh sách món:");
+    for (var mon in danhSachMon) {
+      print("- ${mon.ten} (${mon.gia} VNĐ)");
+    }
+
+    print("Tổng tiền: ${tinhTongTien()} VNĐ");
   }
 }
 ```
@@ -127,27 +170,36 @@ class Food {
 ## 📌 Câu 4: CRUD
 
 ```dart
-class ListFood {
-  List<Food> foods = [];
+import 'donhang.dart';
 
-  void addFood(Food food) {
-    foods.add(food);
+class ListDonHang {
+  List<DonHang> listDonHang = [];
+
+  // CREATE
+  void themDonHang(DonHang dh) {
+    listDonHang.add(dh);
   }
 
-  void getAllFood() {
-    for (var food in foods) {
-      food.display();
+  // READ
+  void hienThi() {
+    for (var dh in listDonHang) {
+      print("Đơn ${dh.id} - ${dh.tenKhachHang} - Tổng: ${dh.tinhTongTien()}");
     }
   }
 
-  void updateFood(int id, String name, int price, int quantity) {
-    for (var food in foods) {
-      if (food.id == id) {
-        food.name = name;
-        food.price = price;
-        food.quantity = quantity;
+  // UPDATE
+  void suaDonHang(int id, DonHang moi) {
+    for (int i = 0; i < listDonHang.length; i++) {
+      if (listDonHang[i].id == id) {
+        listDonHang[i] = moi;
+        break;
       }
     }
+  }
+
+  // DELETE
+  void xoaDonHang(int id) {
+    listDonHang.removeWhere((dh) => dh.id == id);
   }
 }
 ```
