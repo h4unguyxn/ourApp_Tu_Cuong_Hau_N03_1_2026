@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1039621189603",
+    "project_id": "flutter-ai-playground-25a2b",
+    "storage_bucket": "flutter-ai-playground-25a2b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039621189603:android:2c8c030cc0ed0f9f003ad6",
+        "android_client_info": {
+          "package_name": "com.example.app_do_an"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMyK5zhNgcs9EdN0qkVRwI4QOrTaz16wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

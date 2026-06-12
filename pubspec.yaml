@@ -30,11 +30,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-
+  firebase_core: ^4.10.0
+  cloud_firestore: ^6.5.0
+  uuid: ^4.5.3
+  geolocator: ^14.0.2
+  flutter_map: ^8.2.2
+  latlong2: ^0.9.1
+  http: ^1.2.2
+  provider: ^6.0.5
+  crypto: ^3.0.2
+  fake_cloud_firestore: ^4.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -56,6 +66,65 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/com.png
+    - assets/images/bun.png
+    - assets/images/fastfood.png
+    - assets/images/drink.png
+    - assets/images/pho-co-nam-dinh.jpg
+    - assets/images/jollibee.jpg
+    - assets/images/tiem_xien_tit_mit.png
+    - assets/images/kfc.jpg
+    - assets/images/mixue.jpg
+    - assets/images/tocotoco.jpg
+    - assets/images/tra_sua_3_anh_em.jpg
+    - assets/images/Tra-Sua-Tran-Chau-Duong-Den-Mixue.jpg
+    - assets/images/Tra-Chanh-Lo-Hoi-Mixue.jpg
+    - assets/images/Duong-Chi-Cam-Lo-Mixue.jpg
+    - assets/images/Tra-Sua-Tocotoco.jpg
+    - assets/images/Tra-Dao-BigSize-Mixue.jpg
+    - assets/images/Super-Sundae-Dau-Tay-Mixue.jpg
+    - assets/images/pepsi-lon.jpg
+    - assets/images/tra-chanh-hat-chia.jpg
+    - assets/images/nuoc-suoi.jpg
+    - assets/images/Xanh-Nhai-Mang-Cau.jpg
+    - assets/images/Tra-Sua-Ba-Vuong-Mixue.jpg
+    - assets/images/Tra-Dau-Tam-Pha-Le-Tuyet.jpg
+    - assets/images/com_ga_ran_kfc.jpg
+    - assets/images/1-mieng-ga-ran-kfc.jpg
+    - assets/images/1-com-phi-le-ga-quay.jpg
+    - assets/images/1-mieng-ga-gion-vui-ve.webp
+    - assets/images/1-burger-ga-gion.webp
+    - assets/images/combo-com-ga-quay-solo.jpg
+    - assets/images/1-khoai-tay-chien-lon.jpg
+    - assets/images/ga-xien-que.jpg
+    - assets/images/vien-chien-thap-cam.jpg
+    - assets/images/xuc-xich-ngot-chien.webp
+    - assets/images/1-ga-sot-cay.jpg
+    - assets/images/com-ga-mam-toi.jpg
+    - assets/images/nem-chua-ran.webp
+    - assets/images/lap-xuong-nuong-da.jpg
+    - assets/images/mi-y-sot-cay-vua.jpg
+    - assets/images/combo-com-ga-ran-solo.jpg
+    - assets/images/mi-y-sot-cay-vua.jpg
+    - assets/images/pho-tai.jpg
+    - assets/images/pho-tai-lan.jpg
+    - assets/images/pho-ga.jpg
+    - assets/images/pho-xao-bo.jpg
+    - assets/images/pepsi-kfc.jpg
+    - assets/images/lipton-kfc.jpg
+    - assets/images/lah-chao.jpg
+    - assets/images/chao-day-du.png
+    - assets/images/chao-thit-bam.png
+    - assets/images/chao-suon-sun.png
+    - assets/images/chao-thit-ga.png
+    - assets/images/chao-trai.png
+    - assets/images/hctfood.png
+    
+
+
+
+    
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,29 +1,61 @@
-import 'mon_an.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // bắt buộc
+import 'cart_item.dart';
 
 class DonHang {
-  int id;
+  String id;
   String tenKhachHang;
-  List<MonAn> danhSachMon;
+  List<CartItem> danhSachSanPham;
 
-  DonHang(this.id, this.tenKhachHang, this.danhSachMon);
+  String? trangThai;
+  DateTime? thoiGianHoanThanh;
+  DateTime? thoiGianNhanHang;
+
+  DonHang(
+    this.id,
+    this.tenKhachHang,
+    this.danhSachSanPham, {
+    this.trangThai,
+    this.thoiGianHoanThanh,
+    this.thoiGianNhanHang,
+  });
 
   double tinhTongTien() {
     double tong = 0;
-    for (var mon in danhSachMon) {
-      tong += mon.gia;
+    for (var item in danhSachSanPham) {
+      tong += item.gia;
     }
     return tong;
   }
 
-  void hienThiDonHang() {
-    print("ID: $id");
-    print("Khách hàng: $tenKhachHang");
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'tenKhachHang': tenKhachHang,
+      'danhSachSanPham': danhSachSanPham.map((e) => e.toMap()).toList(),
+      'trangThai': trangThai,
+      'thoiGianHoanThanh': thoiGianHoanThanh != null ? Timestamp.fromDate(thoiGianHoanThanh!) : null,
+      'thoiGianNhanHang': thoiGianNhanHang != null ? Timestamp.fromDate(thoiGianNhanHang!) : null,
+    };
+  }
 
-    print("Danh sách món:");
-    for (var mon in danhSachMon) {
-      print("- ${mon.ten} (${mon.gia} VNĐ)");
-    }
-
-    print("Tổng tiền: ${tinhTongTien()} VNĐ");
+  factory DonHang.fromMap(Map<String, dynamic> map) {
+    return DonHang(
+      map['id'] ?? '',
+      map['tenKhachHang'] ?? '',
+      (map['danhSachSanPham'] as List<dynamic>? ?? [])
+          .map((e) => CartItem.fromMap(Map<String, dynamic>.from(e)))
+          .toList(),
+      trangThai: map['trangThai'],
+      thoiGianHoanThanh: map['thoiGianHoanThanh'] != null
+          ? (map['thoiGianHoanThanh'] is Timestamp
+              ? (map['thoiGianHoanThanh'] as Timestamp).toDate()
+              : map['thoiGianHoanThanh'] as DateTime)
+          : null,
+      thoiGianNhanHang: map['thoiGianNhanHang'] != null
+          ? (map['thoiGianNhanHang'] is Timestamp
+              ? (map['thoiGianNhanHang'] as Timestamp).toDate()
+              : map['thoiGianNhanHang'] as DateTime)
+          : null,
+    );
   }
 }

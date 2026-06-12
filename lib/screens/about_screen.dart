@@ -1,401 +1,191 @@
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({super.key});
+  final String userPhone;
+
+  const AboutScreen({super.key, required this.userPhone});
+
+  void _logout(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+  }
+
+  Widget _buildInfoCard({
+    required IconData icon,
+    required String label,
+    required String value,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.06),
+            blurRadius: 16,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 46,
+            height: 46,
+            decoration: BoxDecoration(
+              color: const Color(0xffe8f8ef),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: const Color(0xff00b14f), size: 22),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 12.5,
+                    color: Color(0xff8a8f9e),
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  value,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xff1a1a2e),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    double widthAuto = MediaQuery.of(context).size.width; // Gives the width
-    double heightAuto = MediaQuery.of(context).size.height; // Gives the height
+    final widthAuto = MediaQuery.of(context).size.width;
 
-    return Container(
-      color: const Color(0xfff4f4f4),
-      child: ListView(
-        padding: EdgeInsets.all(widthAuto * 0.05),
-        children: [
-          _buildHero(widthAuto, heightAuto),
-
-          SizedBox(height: heightAuto * 0.025),
-
-          _buildInfoBox(),
-
-          SizedBox(height: heightAuto * 0.03),
-
-          _buildFooter(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHero(double widthAuto, double heightAuto) {
-    return Container(
-      width: double.infinity,
-      constraints: BoxConstraints(
-        minHeight: heightAuto * 0.16,
-      ),
-      padding: EdgeInsets.all(widthAuto * 0.06),
-      decoration: BoxDecoration(
-        color: const Color(0xff222222),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "About Us",
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+    return Scaffold(
+      backgroundColor: const Color(0xfff5f7f5),
+      appBar: AppBar(
+        backgroundColor: const Color(0xfff5f7f5),
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: const Text(
+          "Thông tin người dùng",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w800,
+            color: Color(0xff1a1a2e),
           ),
-
-          SizedBox(height: 8),
-
-          Text(
-            "Thông tin giới thiệu nhóm sinh viên và bài kiểm tra giữa kỳ.",
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.white70,
+        ),
+        iconTheme: const IconThemeData(color: Color(0xff1a1a2e)),
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: widthAuto * 0.045, vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildInfoCard(
+              icon: Icons.phone_android_rounded,
+              label: "Số điện thoại đăng ký",
+              value: userPhone,
             ),
-          ),
 
-          SizedBox(height: 18),
+            const SizedBox(height: 28),
 
-          Row(
-            children: [
-              Icon(
-                Icons.school,
-                color: Colors.white,
-              ),
-              SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  "Phenikaa University",
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.white,
+            // ── App info banner ──────────────────────────────────
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.fromLTRB(22, 26, 22, 22),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xff00b14f), Color(0xff00913f)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xff00b14f).withOpacity(0.28),
+                    blurRadius: 20,
+                    offset: const Offset(0, 8),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildInfoBox() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.black12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Thông tin bài làm",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-
-          _infoItem("Trường", "Phenikaa University"),
-          _infoItem("Môn học", "Lập trình ứng dụng di động"),
-          _infoItem("Framework", "Flutter"),
-          _infoItem(
-            "Nội dung",
-            "Xây dựng các trang Home, Content và About dựa trên mẫu Figma.",
-          ),
-
-          const SizedBox(height: 10),
-
-          SizedBox(
-            width: double.infinity,
-            height: 44,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff222222),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () {},
-              child: const Text(
-                "Submit",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _infoItem(String title, String value) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
-            ),
-          ),
-
-          const SizedBox(height: 6),
-
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black12),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              value,
-              style: const TextStyle(
-                fontSize: 13,
-                color: Colors.black54,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFooter() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(18, 20, 18, 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.black12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          LayoutBuilder(
-            builder: (context, constraints) {
-              final bool isSmall = constraints.maxWidth < 500;
-              final double itemWidth = isSmall
-                  ? (constraints.maxWidth - 12) / 2
-                  : (constraints.maxWidth - 36) / 4;
-
-              return Wrap(
-                spacing: 12,
-                runSpacing: 20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: itemWidth,
-                    child: _brandColumn(),
-                  ),
-                  SizedBox(
-                    width: itemWidth,
-                    child: _footerColumn(
-                      title: "Liên hệ",
-                      normalItems: [
-                        "Hotline (8–22h)",
-                        "1900 xxxx",
-                        "Địa điểm",
-                        "Phenikaa University – Hà Nội",
-                      ],
+                  Container(
+                    width: 52,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.18),
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: const Icon(
+                      Icons.restaurant_menu_rounded,
+                      color: Colors.white,
+                      size: 26,
                     ),
                   ),
-                  SizedBox(
-                    width: itemWidth,
-                    child: _footerColumn(
-                      title: "Giao hàng",
-                      normalItems: [
-                        "30–45 phút khu nội thành",
-                      ],
-                      highlightItems: [
-                        "Chính sách giao hàng",
-                        "Phí vận chuyển",
-                        "Đối tác giao hàng",
-                      ],
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Ứng dụng đặt đồ ăn HCT Food",
+                    style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white,
+                      height: 1.3,
                     ),
                   ),
-                  SizedBox(
-                    width: itemWidth,
-                    child: _footerColumn(
-                      title: "Hợp pháp & hỗ trợ",
-                      highlightItems: [
-                        "FAQ",
-                        "Điều khoản sử dụng",
-                        "Quyền riêng tư",
-                      ],
+                  const SizedBox(height: 6),
+                  Text(
+                    "Phiên bản 1.0.0",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.white.withOpacity(0.85),
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
-              );
-            },
-          ),
-
-          const SizedBox(height: 20),
-
-          Container(
-            height: 1,
-            color: Colors.black12,
-          ),
-
-          const SizedBox(height: 14),
-
-          const Text(
-            "© 2026 HCT Food. Bản demo ứng dụng.",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.black54,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _brandColumn() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Thương hiệu",
-          style: TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.bold,
-            color: Color(0xff222222),
-          ),
-        ),
-
-        const SizedBox(height: 10),
-
-        Row(
-          children: [
-            Container(
-              width: 28,
-              height: 28,
-              decoration: BoxDecoration(
-                color: const Color(0xff222222),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Icon(
-                Icons.restaurant_menu,
-                size: 17,
-                color: Colors.white,
               ),
             ),
 
-            const SizedBox(width: 8),
+            // Đẩy nút xuống cuối màn hình
+            const Spacer(),
 
-            const Expanded(
-              child: Text(
-                "HCT Food",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff222222),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => _logout(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff00b14f),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+                child: const Text(
+                  "Đăng xuất",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
               ),
             ),
+
+            const SizedBox(height: 16),
           ],
         ),
-
-        const SizedBox(height: 10),
-
-        const Text(
-          "Đặt món nhanh — giao tận nơi",
-          style: TextStyle(
-            fontSize: 11,
-            color: Colors.black54,
-            height: 1.4,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _footerColumn({
-    required String title,
-    List<String> normalItems = const [],
-    List<String> highlightItems = const [],
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.bold,
-            color: Color(0xff222222),
-          ),
-        ),
-
-        const SizedBox(height: 10),
-
-        ...normalItems.map(
-          (item) => Padding(
-            padding: const EdgeInsets.only(bottom: 7),
-            child: Text(
-              item,
-              style: TextStyle(
-                fontSize: 11,
-                height: 1.35,
-                color: item.contains("1900")
-                    ? const Color(0xff222222)
-                    : Colors.black54,
-                fontWeight: item.contains("1900")
-                    ? FontWeight.bold
-                    : FontWeight.normal,
-              ),
-            ),
-          ),
-        ),
-
-        ...highlightItems.map(
-          (item) => Padding(
-            padding: const EdgeInsets.only(bottom: 7),
-            child: Text(
-              item,
-              style: const TextStyle(
-                fontSize: 11,
-                height: 1.35,
-                color: Colors.black54,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
