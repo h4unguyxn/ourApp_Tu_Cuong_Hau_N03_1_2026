@@ -11,246 +11,96 @@ Project bao gồm các bài thực hành từ cơ bản đến nâng cao: tạo 
 - Nguyễn Mạnh Cường - 23010271
 - Nguyễn Xuân Tú - 23010538
   
-## Công nghệ
-- Flutter
-- Dart
-- GitHub
 
-# 🚀 BÀI THỰC HÀNH 01
+## 🔹 Demo
+- Link demo: *(chèn link nếu có)*
 
-## 🎯 Nội dung
+## 🔹 Tính năng chính
+1. **Đăng nhập / Đăng ký**  
+   - Bảo mật bằng hash SHA-256.
+   - Kiểm tra số điện thoại hợp lệ.
 
-* Tạo repository GitHub cho nhóm
-* Tạo framework Flutter
-* Hiển thị thông tin nhóm trên app
+2. **Trang chủ (HomeScreen)**  
+   - Hiển thị cửa hàng gần nhất dựa trên GPS.
+   - Hiển thị các danh mục: cơm, bún, đồ ăn nhanh, đồ uống.
 
-## 🛠 Kết quả
+3. **Tìm kiếm (SearchScreen)**  
+   - Tìm kiếm theo tên món ăn hoặc cửa hàng.
+   - Lọc theo danh mục món ăn.
 
-* App chạy thành công với tiêu đề **HCT Food**
-* Hiển thị đầy đủ thành viên
+4. **Chi tiết cửa hàng (StoreDetailScreen)**  
+   - Xem danh sách món ăn, đồ uống, kem.
+   - Đối với đồ uống/kem: chọn size và giá tương ứng.
+   - Thêm món vào giỏ hàng.
+
+5. **Giỏ hàng & Đơn hàng (ContentScreen)**  
+   - Xem, tăng/giảm số lượng món.
+   - Đặt hàng, xem trạng thái "Đang giao" hoặc "Lịch sử".
+
+6. **Thông tin người dùng (AboutScreen)**  
+   - Xem số điện thoại, phiên bản app.
+   - Đăng xuất.
+
+7. **Địa chỉ giao hàng (LocationAppBarTitle)**  
+   - Lấy vị trí hiện tại bằng GPS hoặc nhập thủ công.
 
 ---
 
-# 📦 BÀI THỰC HÀNH 02
+## 🔹 Công nghệ sử dụng
+- **Flutter & Dart**
+- **Firebase Firestore**: quản lý dữ liệu cửa hàng, món ăn, đơn hàng, người dùng.
+- **Provider**: quản lý trạng thái giỏ hàng.
+- **Geolocator**: xác định vị trí người dùng.
+- **HTTP**: truy xuất địa chỉ từ OpenStreetMap.
 
-## 🎯 Nội dung
+---
 
-### 1. Sử dụng biến
-
-* int, String để mô tả món ăn
-
-### 2. Collections
-
-* Map: lưu thông tin người dùng
-* List + Map: lưu danh sách món ăn
-
-### 3. Hiển thị dữ liệu
-
-* Dùng Text, Row, ListView để hiển thị
-
-## 📊 Dữ liệu mẫu
-
-```dart
-var user = {
-  'id': 1,
-  'ten': 'Nguyễn Văn Cường'
-};
-
-var listFood = [
-  {'idFood': 1, 'tenMon': 'Burger', 'soLuong': 10, 'nhaHang': 'HCT Food', 'namBan': '2026'},
-  {'idFood': 2, 'tenMon': 'Pizza', 'soLuong': 20, 'nhaHang': 'HCT Food', 'namBan': '2025'},
-  {'idFood': 3, 'tenMon': 'Trà sữa', 'soLuong': 30, 'nhaHang': 'HCT Food', 'namBan': '2024'}
-];
+## 🔹 Cấu trúc thư mục
 ```
-
-## 🛠 Kết quả
-
-* Hiển thị thành công danh sách món ăn
-* Giao diện rõ ràng, dễ nhìn
-
----
-
-# 🧠 BÀI THỰC HÀNH 03
-
-## 📌 Câu 1: Static
-
-Static là gì?
-Trong lập trình (đặc biệt là Java, C++, C#), static là một từ khóa dùng để khai báo các thành phần (biến, phương thức, lớp lồng) thuộc về lớp (class) thay vì thuộc về đối tượng (object). Điều này có nghĩa là tất cả các đối tượng của lớp sẽ dùng chung một bản sao duy nhất của thành phần static. Ví dụ: một biến static sẽ không thay đổi theo từng object mà chỉ tồn tại một lần trong bộ nhớ.
-
-Cách sử dụng static:
-
-Biến static (static variable): Dùng để lưu dữ liệu chung cho tất cả các đối tượng.
-Ví dụ: đếm số lượng object đã tạo.
-Phương thức static (static method): Có thể gọi trực tiếp bằng tên lớp mà không cần tạo object.
-Ví dụ: Math.sqrt() trong Java.
-Khối static (static block): Dùng để khởi tạo dữ liệu tĩnh ngay khi lớp được load.
-Lớp static (trong Java): Thường dùng cho lớp lồng (nested class).
-Ưu điểm của static:
-
-Tiết kiệm bộ nhớ vì chỉ tồn tại một bản duy nhất.
-Dễ truy cập, không cần tạo object vẫn dùng được.
-Phù hợp cho các giá trị dùng chung như hằng số (static final).
-Nhược điểm của static:
-
-Khó kiểm soát khi nhiều nơi cùng thay đổi giá trị (dễ gây lỗi).
-Làm giảm tính hướng đối tượng (OOP), vì không gắn với object.
-Khó mở rộng và kiểm thử (test), đặc biệt trong các hệ thống lớn.
-Tóm lại, static rất hữu ích khi cần chia sẻ dữ liệu hoặc chức năng chung, nhưng cần sử dụng hợp lý để tránh ảnh hưởng đến thiết kế chương trình.
-
----
-
-## 📌 Câu 2: Generics
-
-### Ý tưởng
-
-Tạo class tổng quát để xử lý nhiều kiểu dữ liệu
-
-```dart
-class MyGeneric<T> {
-  T obj;
-
-  MyGeneric(this.obj);
-
-  void printData() {
-    print(obj);
-  }
-}
-
-void main() {
-  var student = [
-    {'studentID': 's123456', 'fullname': 'Nguyen Thi B'},
-    {'studentID': 's345672', 'fullname': 'Nguyen Van D'},
-    {'studentID': 's923333', 'fullname': 'Tran Thi Van'},
-  ];
-
-  var myData = MyGeneric(student);
-
-  myData.printData();
-}
+lib/
+ ├─ entities/          # Các model: SanPham, MonAn, DoUong, Kem, CartItem, DonHang, CuaHang
+ ├─ services/          # Service kết nối Firestore, quản lý dữ liệu & Cart
+ ├─ screens/           # Các màn hình Flutter
+ ├─ widgets/           # Widget tái sử dụng (LocationAppBarTitle)
+ ├─ main.dart          # Entry point
+ └─ firebase_options.dart
+assets/
+ └─ images/            # Logo, icon, ảnh mặc định
 ```
 
 ---
 
-## 📌 Câu 3: Class
-
-```dart
-import 'monan.dart';
-
-class DonHang {
-  int id;
-  String tenKhachHang;
-  List<MonAn> danhSachMon;
-
-  DonHang(this.id, this.tenKhachHang, this.danhSachMon);
-
-  double tinhTongTien() {
-    double tong = 0;
-    for (var mon in danhSachMon) {
-      tong += mon.gia;
-    }
-    return tong;
-  }
-
-  void hienThiDonHang() {
-    print("ID: $id");
-    print("Khách hàng: $tenKhachHang");
-
-    print("Danh sách món:");
-    for (var mon in danhSachMon) {
-      print("- ${mon.ten} (${mon.gia} VNĐ)");
-    }
-
-    print("Tổng tiền: ${tinhTongTien()} VNĐ");
-  }
-}
+## 🔹 Cài đặt & Chạy ứng dụng
+1. **Clone repo**
+```bash
+git clone <link-github>
+cd <ten-project>
 ```
 
----
-
-## 📌 Câu 4: CRUD
-
-```dart
-import 'donhang.dart';
-
-class ListDonHang {
-  List<DonHang> listDonHang = [];
-
-  // CREATE
-  void themDonHang(DonHang dh) {
-    listDonHang.add(dh);
-  }
-
-  // READ
-  void hienThi() {
-    for (var dh in listDonHang) {
-      print("Đơn ${dh.id} - ${dh.tenKhachHang} - Tổng: ${dh.tinhTongTien()}");
-    }
-  }
-
-  // UPDATE
-  void suaDonHang(int id, DonHang moi) {
-    for (int i = 0; i < listDonHang.length; i++) {
-      if (listDonHang[i].id == id) {
-        listDonHang[i] = moi;
-        break;
-      }
-    }
-  }
-
-  // DELETE
-  void xoaDonHang(int id) {
-    listDonHang.removeWhere((dh) => dh.id == id);
-  }
-}
-```
-
----
-
-## 🎯 Kết quả đạt được
-
-* Hiểu về Generics trong Dart
-* Áp dụng OOP vào project
-* Xây dựng CRUD cơ bản
-
----
-
-# 🛠 Công nghệ sử dụng
-
-* Flutter
-* Dart
-* GitHub
-
----
-
-# 🚀 Hướng phát triển
-
-* Xây dựng UI đặt đồ ăn
-* Kết nối API
-* Thêm chức năng đăng nhập
-* Thanh toán online
-
----
-
-# Bài kiểm tra giữa kỳ Flutter
-
-## Thành viên nhóm
-
-| STT | Họ tên | Công việc |
-|---|---|---|
-| 1 | Nguyễn Mạnh Cường | About Screen |
-| 2 | Nguyễn Xuân Hậu | Home Screen|
-| 3 | Nguyễn Xuân Tú | Content Screen |
-
-## Phân chia màn hình
-
-- Home: `lib/screens/home_screen.dart`
-- Content: `lib/screens/content_screen.dart`
-- About: `lib/screens/about_screen.dart`
-
-## Cách chạy project
-
+2. **Cài đặt dependencies**
 ```bash
 flutter pub get
+```
+
+3. **Chạy app**
+```bash
+flutter run
+```
+
+> Lưu ý: cần cấu hình Firebase project và file `firebase_options.dart` tương ứng.
+
+---
+
+## 🔹 Quy trình phát triển
+- Phát triển theo **User Stories**:
+  1. Người dùng đăng nhập/đăng ký
+  2. Xem danh mục món ăn và cửa hàng gần
+  3. Thêm món ăn vào giỏ, chọn size đồ uống/kem
+  4. Đặt hàng, xem trạng thái đơn
+  5. Quản lý địa chỉ giao hàng
+- Sử dụng **Git commit** để track tiến độ từng thành viên.
+
+---
 flutter run
 
 
