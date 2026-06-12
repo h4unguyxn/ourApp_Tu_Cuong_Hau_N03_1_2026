@@ -1,8 +1,19 @@
 # HCT Food - Ứng dụng đặt đồ ăn
 ## 🧾 Giới thiệu
 
-HCT Food là ứng dụng đặt đồ ăn được xây dựng bằng Flutter trong khuôn khổ môn học Lập trình thiết bị di động.
-Project bao gồm các bài thực hành từ cơ bản đến nâng cao: tạo framework, quản lý dữ liệu và lập trình hướng đối tượng.
+HCT Food là một ứng dụng đặt đồ ăn toàn diện được phát triển trên nền tảng Flutter, nhằm mang đến trải nghiệm đặt món tiện lợi và nhanh chóng cho người dùng. Ứng dụng cho phép người dùng tìm kiếm và lựa chọn các món ăn, đồ uống và kem từ nhiều cửa hàng khác nhau, với thông tin chi tiết về giá cả, hình ảnh và đánh giá cửa hàng.  
+
+Người dùng có thể:
+- Tìm kiếm món ăn yêu thích hoặc khám phá các cửa hàng gần vị trí hiện tại của mình thông qua GPS.
+- Lựa chọn size cho đồ uống và kem, đồng thời theo dõi giá tương ứng.
+- Thêm món vào giỏ hàng, tăng giảm số lượng hoặc xóa món dễ dàng.
+- Đặt hàng và theo dõi trạng thái đơn hàng: "Đang giao" hoặc "Lịch sử đơn hàng".
+- Cập nhật và quản lý địa chỉ giao hàng một cách linh hoạt, sử dụng GPS hoặc nhập thủ công.
+- Quản lý thông tin cá nhân, đăng xuất an toàn và theo dõi phiên bản ứng dụng.  
+
+Ứng dụng sử dụng Firebase Firestore để lưu trữ dữ liệu thời gian thực, giúp đồng bộ thông tin giữa người dùng và cửa hàng, đảm bảo rằng giỏ hàng, đơn hàng và dữ liệu sản phẩm luôn được cập nhật tức thì. Tích hợp Provider giúp quản lý trạng thái giỏ hàng một cách hiệu quả, còn Geolocator hỗ trợ xác định vị trí chính xác để hiển thị cửa hàng gần nhất.  
+
+HCT Food hướng đến việc cung cấp trải nghiệm đặt đồ ăn liền mạch, trực quan và hiện đại, giúp người dùng tiết kiệm thời gian và mang lại sự hài lòng tối đa khi đặt món online.
 
 ---
 
